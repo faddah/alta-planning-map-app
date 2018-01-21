@@ -1,6 +1,20 @@
-# AltaPlanningMapApp
+# Alta Planning Map App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+
+## To Run
+Clone this repository to a local computer with Git, Node.JS ^8.9.4 & NP ^5.6.0. Run from the command line in that local repository —
+
+```
+npm i
+```
+This will install all necessary node modules for this to run. Then run from the command line —
+
+```
+ng serve
+```
+
+This will launch a local server and the app should show in your browser in at http://localhost:4200/.
 
 ## Development server
 
