@@ -1,12 +1,97 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="main-heading">
+  <div class="top-logo">
+    <a href="https://altaplanning.com/" alt="Alta Planning And Design Website" title="Alta Planning And Design Website" target="_blank">
+      <img width="170" alt="Alta Planning + Design Logo" src="../assets/Alta_Logo_white_on_red.png">
+    </a>
+  </div>
+  <div class="heading-div-top">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <div class="heading-div-bottom">
+    <div class="input-address">
+      <p><label for="address-label">Input the Address You Wish To Locate Here</label></p>
+      <textarea class='form-control' placeholder='Input the Address Here'></textarea>
+      <button type="button" class="btn btn-success" id="go">
+        Let's Go!
+      </button>
+    </div>
+    <div class="place-selector">
+      <p><label for="key-locations">Choose & Save Your Key Locations</label></p>
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Your Favorite Locations
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" id="home" href="#">Home</a>
+          <a class="dropdown-item" id="work" href="#">Work</a>
+          <a class="dropdown-item" id="school" href="#">School</a>
+          <a class="dropdown-item" id="college" href="#">College</a>
+          <a class="dropdown-item" id="restaurant" href="#">Restaurant</a>
+          <a class="dropdown-item" id="coffee" href="#">Coffee</a>
+          <a class="dropdown-item" id="grocery" href="#">Grocery Market</a>
+          <a class="dropdown-item" id="pharmacy" href="#">Pharmacy</a>
+          <a class="dropdown-item" id="gas" href="#">Gas Station</a>
+          <a class="dropdown-item" id="other" href="#">Other...</a>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" name="go" class="btn btn-info">Let's Got!</button><button type="button" name="go" class="btn btn-success">Save</button>
+      </div>
+      <!-- <select name="locations">
+        <option value="home">Home</option>
+        <option value="work" selected>Work</option>
+        <option value="school">School</option>
+        <option value="college">College</option>
+        <option value="restaurant">Restaurant</option>
+        <option value="coffee">Coffee</option>
+        <option value="grocery">Grocery Market</option>
+        <option value="pharmacy">Pharmacy</option>
+        <option value="gas">Gas Station</option>
+        <option value="other">Other...</option>
+      </select> -->
+    </div>
+  </div>
+  <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
+<div class="map-area">
+  <h2>Your Map of Local Key Spots</h2>
+  <agm-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-marker
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+
+      <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window>
+
+    </agm-marker>
+
+    <agm-circle [latitude]="lat + 0.3" [longitude]="lng"
+        [radius]="5000"
+        [fillColor]="'red'"
+        [circleDraggable]="true"
+        [editable]="true">
+    </agm-circle>
+
+  </agm-map>
+</div>
+
+<!-- <ul>
   <li>
     <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
   </li>
@@ -16,5 +101,4 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
-
+</ul> -->
