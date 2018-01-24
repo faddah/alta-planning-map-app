@@ -6,6 +6,7 @@ import { MouseEvent } from '@agm/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'The Alta Planning Map App';
   zoom = 12;

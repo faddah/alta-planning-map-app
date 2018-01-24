@@ -57,25 +57,41 @@ h1 {
 }
 
 .input-address > textarea, .input-address > button {
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
+  font-size: 14px;
 }
 
 .input-address > textarea {
+  margin: -3% 0 1% 0;
   max-height: 1.5rem;
+  padding: 1%;
 }
 
 .input-address > button {
   background-color: #007491;
-  float: right;
   margin-top: .25rem;
-  max-height: 1.5rem;
+  max-height: 2rem;
   width: 33%;
 }
 
-.place-selector > button {
+.place-selector > .dropdown > button {
   background-color: #007491;
+  margin: -3% 0 2% 0;
+}
+
+.place-selector > select {
+  background-color: #007491;
+  color: #f1dd7f;
+  margin: -3% 0 2% 0;
+  min-height: 1.5rem;
+}
+
+.place-selector > .btn-group > button[name='go'] {
+  background-color: #007491;
+  margin-right: 5%;
+}
+
+.place-selector > .btn-group > .btn.btn-success.btn-sm.save-button {
+  background-color: ##7AD5E8;
 }
 
 .map-area {
